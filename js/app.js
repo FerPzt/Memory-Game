@@ -16,9 +16,8 @@ let timer = 0;
 let interval;
 let gameCards = symbols.length / 2;
 let rating = $('i');
-const ranking3stars = 10;
-const ranking2stars = 16;
-const ranking1star = 24;
+const ranking3stars = 12;
+const ranking2stars = 22;
 
  // Shuffle function from http://stackoverflow.com/a/2450976
  function shuffle(array) {
