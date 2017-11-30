@@ -4,8 +4,8 @@ This is a project from Udacity Front End Nanodegree, for studying purposes.
 
 The Memory Game works basically the same way as any memory game: you try to match the pairs of images with as less moves as possible.
 
+To start the game, click on any card, then click in another one. If the cards match, they will stay opened and change their background color to green.
 When the game starts, a timer will be displayed.
-To start the game, just click on any card, then click in another one. If the cards match, they will stay opened and change their background color to green.
 
 <p align="center">
   <img src="img/match.png" width="350"/>  
@@ -32,7 +32,7 @@ When it's ended, your score will appear in your screen, then you can leave it or
 </p>
 
 
-You can restart the game anytime you'd like - You just click the refresh icon and confirm if you really want to restar the game or continue in the previous game.
+You can restart the game anytime you'd like - You just click the refresh icon and confirm if you really want to restart the game or continue in the previous game.
 <p align="center">
   <img src="img/restart.png" width="350"/>  
 </p>
