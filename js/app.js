@@ -14,10 +14,11 @@ let deck = $('#deck-id');
 let gameStarted = false;
 let timer = 0;
 let interval;
+let currentTimer = '';
 let gameCards = symbols.length / 2;
 let rating = $('i');
 const ranking3stars = 12;
-const ranking2stars = 22;
+const ranking2stars = 17;
 
  // Shuffle function from http://stackoverflow.com/a/2450976
  function shuffle(array) {
@@ -68,7 +69,8 @@ function startGame() {
       timer++;
       let numSeconds = (((timer % 31536000) % 86400) % 3600) % 60;
       let numMinutes = Math.floor((((timer % 31536000) % 86400) % 3600) / 60);
-      $('.timer').html(numMinutes + " min " + numSeconds + " sec" );
+      currentTimer = numMinutes + " min " + numSeconds + " sec" ;
+      $('.timer').html(currentTimer);
     }
   }, 1000)
 };
@@ -121,7 +123,7 @@ function endGame(moves, score) {
   //display modal with a message containing the final score and checking if player wants to play again
   swal({
     title: 'You Won!',
-    text: 'Your final score is: ' + moves + ' moves and ' + score + ' stars! Do you want to play again?',
+    text: 'Your final score is: ' + moves + ' moves and ' + score + ' stars, in ' + currentTimer + '. \n Do you want to play again?',
     type: 'success',
     showCancelButton: true,
     cancelButtonColor: '#d33',
