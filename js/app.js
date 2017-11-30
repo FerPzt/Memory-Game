@@ -83,39 +83,59 @@ function setRate(moves) {
   if (ranking3stars < moves && moves < ranking2stars) {
     rating.eq(2).removeClass('fa-star').addClass('fa-star-o');
     return 2;
-  } else if (ranking2stars < moves && moves < ranking1star) {
+  } else if (ranking2stars < moves) {
     rating.eq(1).removeClass('fa-star').addClass('fa-star-o');
     return 1;
-  } else if (ranking1star < moves) {
-    rating.eq(0).removeClass('fa-star').addClass('fa-star-o');
-    return 0;
   }
   return 3;
 };
 
 //Restart Game when restart button is clicked
 restart.click(function() {
-  let restartAlert = confirm("Are you sure you want to restart the game? \nYour progress will be lost.");
-  if (restartAlert == true) {
-    //reset timer
-    clearInterval(interval);
-    startGame();
-  } else {
-    return false;
-  }
+  //dispay modal box to check if players really want to play again or continue the game he already started
+    swal({
+    allowEscapeKey: false,
+    allowOutsideClick: false,
+    title: 'Are you sure?',
+    text: 'If you restart the game your progress will be lost.',
+    type: 'warning',
+    showCancelButton: true,
+    cancelButtonColor: '#d33',
+    confirmButtonColor: 'green',
+    cancelButtonText: "No, I'm not sure",
+    confirmButtonText: 'Yes, restart it!'
+  }). then((result) => {
+    if (result.value) {
+      //reset timer
+      clearInterval(interval);
+      startGame();
+    } else if (result.dismiss === 'cancel') {
+      return false;
+    }
+  })
 });
 
 //End Game
 function endGame(moves, score) {
   //reset timer
   clearInterval(interval);
-  //display a message with the final score and check if player wants to play again
-  let endGameAlert = confirm("You won with " + moves + " moves and " + score + " stars! \nDo you want to play again?");
-  if (endGameAlert == true) {
-    startGame();
-  } else {
-    return false;
-  }
+  //display modal with a message containing the final score and checking if player wants to play again
+  swal({
+    title: 'You Won!',
+    text: 'Your final score is: ' + moves + ' moves and ' + score + ' stars! Do you want to play again?',
+    type: 'success',
+    showCancelButton: true,
+    cancelButtonColor: '#d33',
+    confirmButtonColor: 'green',
+    cancelButtonText: 'No',
+    confirmButtonText: 'Yes'
+  }). then((result) => {
+    if (result.value) {
+      startGame();
+    } else if (result.dismiss === 'cancel'){
+      return false;
+    }
+  })
 };
 
  //card click event listener
@@ -163,7 +183,7 @@ function endGame(moves, score) {
        let score = setRate(moves);
        setTimeout(function() {
          endGame(moves, score);
-       }, 500);
+       }, 300);
      }
   });
 });
